@@ -1,7 +1,12 @@
 package org.testhk.servlet;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 //import javax.servlet.annotation.WebServlet;
@@ -9,6 +14,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+import org.testhk.service.CoreService;
 import org.testhk.util.SHA1;
 
 /**
@@ -18,6 +27,7 @@ import org.testhk.util.SHA1;
 public class CoreServlet extends HttpServlet {
 	// 自定义 token
 	private String TOKEN = "weixinhk";
+	
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -29,6 +39,9 @@ public class CoreServlet extends HttpServlet {
 		String timestamp = request.getParameter("timestamp");
 		// 随机数
 		String nonce = request.getParameter("nonce");
+		
+		System.out.println("timestamp:"+timestamp);
+		System.out.println("nonce:"+nonce);
 
 		String[] str = { TOKEN, timestamp, nonce };
 		Arrays.sort(str); // 字典序排序
@@ -41,5 +54,21 @@ public class CoreServlet extends HttpServlet {
 		if (digest.equals(signature)) {
 			response.getWriter().print(echostr);
 		}
+	}
+	
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("收到post请求");
+		request.setCharacterEncoding("UTF-8");  
+        response.setCharacterEncoding("UTF-8");  
+  
+        // 调用核心业务类接收消息、处理消息  
+        //String respMessage = CoreService.processRequest(request);  
+        String respMessage = "欢迎欢迎";
+        // 响应消息  
+        PrintWriter out = response.getWriter();  
+        out.print(respMessage);  
+        out.close();  
 	}
 }
