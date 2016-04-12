@@ -17,7 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.testhk.message.response.TextMessage;
 import org.testhk.service.CoreService;
+import org.testhk.util.MessageUtil;
 import org.testhk.util.SHA1;
 
 /**
@@ -59,13 +61,15 @@ public class CoreServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("收到post请求");
-		request.setCharacterEncoding("UTF-8");  
-        response.setCharacterEncoding("UTF-8");  
+		  request.setCharacterEncoding("UTF-8");  
+          response.setCharacterEncoding("UTF-8");  
+          response.setContentType("application/xml");
   
         // 调用核心业务类接收消息、处理消息  
-        //String respMessage = CoreService.processRequest(request);  
-        String respMessage = "欢迎欢迎";
+        String respMessage = CoreService.processRequest(request);  
+        
+        System.out.println("respMessage:"+respMessage);
+        
         // 响应消息  
         PrintWriter out = response.getWriter();  
         out.print(respMessage);  

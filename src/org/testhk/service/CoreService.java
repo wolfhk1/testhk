@@ -11,8 +11,6 @@ import org.testhk.util.MessageUtil;
 /** 
  * 核心服务类 
  *  
- * @author liufeng 
- * @date 2013-05-20 
  */  
 public class CoreService {  
     /** 
@@ -36,6 +34,8 @@ public class CoreService {
             String toUserName = requestMap.get("ToUserName");  
             // 消息类型  
             String msgType = requestMap.get("MsgType");  
+            //消息内容
+            String content = requestMap.get("Content");
   
             // 回复文本消息  
             TextMessage textMessage = new TextMessage();  
@@ -47,7 +47,10 @@ public class CoreService {
   
             // 文本消息  
             if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {  
-                respContent = "您发送的是文本消息！";  
+            	if("?".equals(content))
+            		respContent = getMainMenu();
+            	else
+            		respContent = "您发送的是文本消息！";  
             }  
             // 图片消息  
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) {  
@@ -90,5 +93,20 @@ public class CoreService {
         }  
   
         return respMessage;  
+    }  
+    
+    public static String getMainMenu() {  
+        StringBuffer buffer = new StringBuffer();  
+        buffer.append("您好，我是hk，请回复数字选择服务：").append("\n\n");  
+        buffer.append("1  天气预报").append("\n");  
+        buffer.append("2  公交查询").append("\n");  
+        buffer.append("3  周边搜索").append("\n");  
+        buffer.append("4  歌曲点播").append("\n");  
+        buffer.append("5  经典游戏").append("\n");  
+        buffer.append("6  美女电台").append("\n");  
+        buffer.append("7  人脸识别").append("\n");  
+        buffer.append("8  聊天唠嗑").append("\n\n");  
+        buffer.append("回复“?”显示此帮助菜单");  
+        return buffer.toString();  
     }  
 }  
