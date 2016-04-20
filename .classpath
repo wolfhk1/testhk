@@ -4,8 +4,10 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="/ZXISRSP-TOUCH-PORTALV2.01.03/WebRoot/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="D:/开发工具/json/json-lib-2.4-jdk15.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xstream-1.3.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="D:/开发工具/slf4j-1.7.21/slf4j-api-1.7.21.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
